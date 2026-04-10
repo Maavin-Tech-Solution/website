@@ -91,7 +91,7 @@ export default function Contact() {
                         <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-secondary)', display: 'block', marginBottom: 6 }}>Full Name *</label>
                         <input
                           required name="name" value={form.name} onChange={handleChange}
-                          placeholder="Rahul Sharma" style={inputStyle}
+                          placeholder="Your name" style={inputStyle}
                           onFocus={e => e.target.style.borderColor = 'var(--primary)'}
                           onBlur={e => e.target.style.borderColor = 'var(--border)'}
                         />
@@ -100,7 +100,7 @@ export default function Contact() {
                         <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--text-secondary)', display: 'block', marginBottom: 6 }}>Email *</label>
                         <input
                           required type="email" name="email" value={form.email} onChange={handleChange}
-                          placeholder="rahul@company.com" style={inputStyle}
+                          placeholder="Enter your email" style={inputStyle}
                           onFocus={e => e.target.style.borderColor = 'var(--primary)'}
                           onBlur={e => e.target.style.borderColor = 'var(--border)'}
                         />
@@ -178,9 +178,9 @@ export default function Contact() {
             {/* Info sidebar */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               {[
-                { icon: <HiMail size={22} />, label: 'Email', value: 'hello@driveinnovate.in', color: '#3b82f6' },
-                { icon: <HiPhone size={22} />, label: 'Phone', value: '+91 98765 43210', color: '#10b981' },
-                { icon: <HiLocationMarker size={22} />, label: 'Office', value: 'Pune, Maharashtra, India', color: '#8b5cf6' },
+                { icon: <HiMail size={22} />, label: 'Email', value: 'support@driveinnovate.in', color: '#3b82f6' },
+                { icon: <HiPhone size={22} />, label: 'Phone', value: '+91 93154 89988', color: '#10b981' },
+                { icon: <HiLocationMarker size={22} />, label: 'Office', value: 'A-15, Sector-69, Noida, Uttar Pradesh, India', color: '#8b5cf6' },
               ].map((c, i) => (
                 <ScaleIn key={i} delay={i * 0.1}>
                   <div style={{
