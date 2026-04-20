@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const plans = [
   {
     name: 'Starter',
-    price: 499,
+    price: 119,
     period: '/vehicle/month',
     desc: 'For small fleets getting started with GPS tracking.',
     color: '#64748b',
@@ -25,7 +25,7 @@ const plans = [
   },
   {
     name: 'Professional',
-    price: 999,
+    price: 239,
     period: '/vehicle/month',
     desc: 'For growing fleets that need full visibility and control.',
     color: '#3b82f6',
@@ -45,7 +45,7 @@ const plans = [
   },
   {
     name: 'Enterprise',
-    price: null,
+    price: 299,
     period: 'Custom',
     desc: 'For large operations with custom requirements.',
     color: '#8b5cf6',
