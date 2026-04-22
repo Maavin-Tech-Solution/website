@@ -1,14 +1,15 @@
-# SPA routing fallback for Apache — client-side router owns all paths.
-# Vite copies files under /public into /dist at build time.
+DirectoryIndex index.html
+
+<IfModule mod_dir.c>
+  FallbackResource /index.html
+</IfModule>
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
-
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
-
   RewriteRule ^ index.html [L]
 </IfModule>
 
