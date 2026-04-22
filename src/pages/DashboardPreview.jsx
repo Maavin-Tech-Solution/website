@@ -47,6 +47,13 @@ const screenshots = [
     color: '#ec4899',
   },
   {
+    src: '/dashbaord/7.png',
+    title: 'Live Tracking & Trips',
+    desc: 'Real-time map with vehicle positions, trip playback, and historical route replay at variable speeds.',
+    badge: 'Live',
+    color: '#ef4444',
+  },
+  {
     src: '/dashbaord/8.png',
     title: 'Geofence Management',
     desc: 'Draw circular or polygon geofences on the map. Assign to vehicles or groups for entry/exit alerts.',
