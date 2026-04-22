@@ -344,7 +344,23 @@ export default function Navbar() {
               </div>
             );
           })}
-          <Link to="/contact" className="btn btn-primary" style={{ marginLeft: 12, padding: '10px 24px', fontSize: 13 }}>
+          <a
+            href="https://app.driveinnovate.in"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              marginLeft: 12, padding: '8px 16px', borderRadius: 'var(--btn-radius, 10px)',
+              fontSize: 13, fontWeight: 600, color: 'var(--text)',
+              border: '1px solid var(--border)', background: 'transparent',
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              transition: 'all 0.2s',
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = 'var(--surface-hover)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+          >
+            Login ↗
+          </a>
+          <Link to="/contact" className="btn btn-primary" style={{ marginLeft: 8, padding: '10px 24px', fontSize: 13 }}>
             Get Started
           </Link>
 
@@ -643,7 +659,20 @@ export default function Navbar() {
                   </div>
                 );
               })}
-              <Link to="/contact" className="btn btn-primary" style={{ marginTop: 12, justifyContent: 'center' }}>
+              <a
+                href="https://app.driveinnovate.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  marginTop: 12, padding: '12px 16px', borderRadius: 10,
+                  fontSize: 15, fontWeight: 600, color: 'var(--text)',
+                  border: '1px solid var(--border)', background: 'transparent',
+                  textAlign: 'center',
+                }}
+              >
+                Login to Dashboard ↗
+              </a>
+              <Link to="/contact" className="btn btn-primary" style={{ marginTop: 8, justifyContent: 'center' }}>
                 Get Started
               </Link>
             </div>

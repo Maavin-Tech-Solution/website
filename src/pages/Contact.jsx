@@ -3,15 +3,37 @@ import { motion } from 'framer-motion';
 import { FadeIn, ScaleIn, GlowOrb, SectionHeading } from '../components/Animations';
 import { HiMail, HiPhone, HiLocationMarker, HiChat, HiPaperAirplane } from 'react-icons/hi';
 
+const API_BASE = import.meta.env.VITE_API_BASE || 'https://driveinnovate.in';
+
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', company: '', fleet: '', device: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (sending) return;
+    setError('');
+    setSending(true);
+    try {
+      const res = await fetch(`${API_BASE}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || 'Something went wrong. Please try again.');
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message || 'Unable to send message. Please try again.');
+    } finally {
+      setSending(false);
+    }
   };
 
   const inputStyle = {
@@ -73,7 +95,7 @@ export default function Contact() {
                     <motion.button
                       whileHover={{ scale: 1.03 }}
                       whileTap={{ scale: 0.97 }}
-                      onClick={() => { setSubmitted(false); setForm({ name: '', email: '', company: '', fleet: '', device: '', message: '' }); }}
+                      onClick={() => { setSubmitted(false); setError(''); setForm({ name: '', email: '', company: '', fleet: '', device: '', message: '' }); }}
                       style={{
                         marginTop: 24, padding: '10px 28px', borderRadius: 10,
                         border: '1px solid var(--border)', background: 'transparent',
@@ -155,20 +177,29 @@ export default function Contact() {
                       />
                     </div>
 
+                    {error && (
+                      <div style={{
+                        marginBottom: 16, padding: '10px 14px', borderRadius: 10,
+                        background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.25)',
+                        color: '#dc2626', fontSize: 13,
+                      }}>{error}</div>
+                    )}
                     <motion.button
-                      whileHover={{ scale: 1.02, boxShadow: '0 8px 30px rgba(59,130,246,0.3)' }}
-                      whileTap={{ scale: 0.98 }}
+                      whileHover={!sending ? { scale: 1.02, boxShadow: '0 8px 30px rgba(59,130,246,0.3)' } : undefined}
+                      whileTap={!sending ? { scale: 0.98 } : undefined}
+                      disabled={sending}
                       type="submit"
                       style={{
                         width: '100%', padding: '14px 0',
                         borderRadius: 12, border: 'none',
                         background: 'linear-gradient(135deg, var(--primary), var(--accent))',
                         color: 'var(--text-on-primary)', fontWeight: 700, fontSize: 15,
-                        cursor: 'pointer', fontFamily: 'var(--font-display)',
+                        cursor: sending ? 'not-allowed' : 'pointer', opacity: sending ? 0.7 : 1,
+                        fontFamily: 'var(--font-display)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
                       }}
                     >
-                      <HiPaperAirplane size={18} /> Send Message
+                      <HiPaperAirplane size={18} /> {sending ? 'Sending…' : 'Send Message'}
                     </motion.button>
                   </form>
                 )}

@@ -45,6 +45,7 @@ export default function Footer() {
               { label: 'Devices', to: '/devices' },
               { label: 'Dashboard', to: '/dashboard' },
               { label: 'Pricing', to: '/pricing' },
+              { label: 'Login to App ↗', to: 'https://app.driveinnovate.in', external: true },
             ]},
             { title: 'Resources', items: [
               { label: 'Documentation', to: '#' },
@@ -65,12 +66,20 @@ export default function Footer() {
               </h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 {col.items.map(item => (
-                  <Link key={item.label} to={item.to} style={{ fontSize: 14, color: 'var(--text-secondary)', transition: 'color 0.2s' }}
-                    onMouseEnter={e => e.target.style.color = 'var(--text)'}
-                    onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
-                  >
-                    {item.label}
-                  </Link>
+                  item.external ? (
+                    <a key={item.label} href={item.to} target="_blank" rel="noopener noreferrer"
+                      style={{ fontSize: 14, color: 'var(--text-secondary)', transition: 'color 0.2s' }}
+                      onMouseEnter={e => e.target.style.color = 'var(--text)'}
+                      onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
+                    >{item.label}</a>
+                  ) : (
+                    <Link key={item.label} to={item.to} style={{ fontSize: 14, color: 'var(--text-secondary)', transition: 'color 0.2s' }}
+                      onMouseEnter={e => e.target.style.color = 'var(--text)'}
+                      onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}
+                    >
+                      {item.label}
+                    </Link>
+                  )
                 ))}
               </div>
             </div>
